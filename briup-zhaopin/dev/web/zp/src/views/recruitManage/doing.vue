@@ -3,13 +3,13 @@
  * 招聘中页面
  * @Date: 2019-12-23 17:03:30 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-12-28 10:15:38
+ * @Last Modified time: 2019-12-28 21:05:09
  */
 <template>
     <div id="recruitDoing">
         <!-- 两个职位按钮 -->
         <div class="button_box">
-            <el-button class="recruit_butt" type="success" icon="el-icon-info">发布职位</el-button>
+            <el-button class="recruit_butt" type="success" icon="el-icon-info" @click="addRecruit">发布职位</el-button>
             <el-button class="recruit_butt" type="primary" icon="el-icon-info">导入职位</el-button>
         </div>
       <!-- 职位下拉筛选框 -->
@@ -127,7 +127,7 @@
         <!-- 修改对话框 -->
         <el-dialog title="修改招聘信息" :visible.sync="editVisible" width="60%" :before-close="beforeClose">
             <!-- 表单 -->
-            <el-form :model="currentRecord" :rules="rules" ref="ruleForm">
+            <el-form :model="currentRecord"  ref="ruleForm_1" :rules="rules">
                 <!-- 第一行 招聘名称-->
                 <el-form-item prop="title" label="招聘名称" :label-width="formLabelWidth">
                     <el-input v-model="currentRecord.title" autocomplete="off"></el-input>
@@ -159,17 +159,17 @@
                 <!-- 第三行 招聘公司和薪水-->
                 <el-row :gutter="20">
                     <el-col :span="12">
-                        <el-form-item  prop="name" label="招聘公司" :label-width="formLabelWidth">
+                        <el-form-item  prop="id" label="招聘公司" :label-width="formLabelWidth">
                             <el-select
                             clearable                       
-                            v-model="currentRecord.name"
+                            v-model="currentRecord.id"
                             placeholder="请选择招聘公司"
                             >
                                 <el-option
                                     v-for="item in businessData"
                                     :key="item.id"
                                     :label="item.name"
-                                    :value="item.name"
+                                    :value="item.id"
                                 ></el-option>
                             </el-select>
                         </el-form-item>
@@ -240,8 +240,16 @@
                 <el-row :gutter="20">
                     <el-col :span="12">
                         <el-form-item  label="招聘时间" :label-width="formLabelWidth">
-                            <el-input  suffix-icon="el-icon-date">
-                                {{currentRecord.startTime}}到{{currentRecord.endTime}}</el-input>
+                            <el-date-picker
+                            v-model="value2"
+                            type="daterange"
+                            align="right"
+                            unlink-panels
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            :picker-options="pickerOptions">
+                            </el-date-picker>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
@@ -278,14 +286,14 @@
                 </el-row>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button size="mini" @click="toCancelEdit('ruleForm')">取 消</el-button>
-                <el-button size="mini" type="primary" @click="toSave('ruleForm')">确 定</el-button>
+                <el-button size="mini" @click="toCancelEdit('ruleForm_1')">取 消</el-button>
+                <el-button size="mini" type="primary" @click="toSave('ruleForm_1')">确 定</el-button>
             </div>
         </el-dialog>
         <!-- 增加对话框 -->
         <el-dialog title="发布招聘信息" :visible.sync="addVisible" width="60%" :before-close="beforeClose">
             <!-- 表单 -->
-            <el-form :model="currentRecord" :rules="rules" ref="ruleForm">
+            <el-form :model="currentRecord" :rules="rules" ref="ruleForm_2">
                 <!-- 第一行 招聘名称-->
                 <el-form-item prop="title" label="招聘名称" :label-width="formLabelWidth">
                     <el-input v-model="currentRecord.title" autocomplete="off"></el-input>
@@ -317,17 +325,17 @@
                 <!-- 第三行 招聘公司和薪水-->
                 <el-row :gutter="20">
                     <el-col :span="12">
-                        <el-form-item  prop="name" label="招聘公司" :label-width="formLabelWidth">
+                        <el-form-item  prop="id" label="招聘公司" :label-width="formLabelWidth">
                             <el-select
                             clearable                       
-                            v-model="currentRecord.name"
+                            v-model="currentRecord.id"
                             placeholder="请选择招聘公司"
                             >
                                 <el-option
                                     v-for="item in businessData"
                                     :key="item.id"
                                     :label="item.name"
-                                    :value="item.name"
+                                    :value="item.id"
                                 ></el-option>
                             </el-select>
                         </el-form-item>
@@ -398,13 +406,21 @@
                 <el-row :gutter="20">
                     <el-col :span="12">
                         <el-form-item  label="招聘时间" :label-width="formLabelWidth">
-                            <el-input  suffix-icon="el-icon-date">
-                                {{currentRecord.startTime}}到{{currentRecord.endTime}}</el-input>
+                            <el-date-picker
+                            v-model="value2"
+                            type="daterange"
+                            align="right"
+                            unlink-panels
+                            range-separator="至"
+                            start-placeholder="开始日期"
+                            end-placeholder="结束日期"
+                            :picker-options="pickerOptions">
+                            </el-date-picker>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
-                        <el-form-item prop="workingTime" label="工作时间" :label-width="formLabelWidth">
-                            <el-input v-model="currentRecord.workingTime"></el-input>
+                        <el-form-item prop="workingHours" label="工作时间" :label-width="formLabelWidth">
+                            <el-input v-model="currentRecord.workingHours"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -425,7 +441,7 @@
                 <el-row :gutter="20">
                     <el-col :span="12">
                         <el-form-item prop="location" label="详细地址" :label-width="formLabelWidth">
-                        <el-input type="textarea" :rows="4" v-model="currentRecord.location"></el-input>
+                            <el-input type="textarea" :rows="4" v-model="currentRecord.location"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
@@ -436,8 +452,8 @@
                 </el-row>
             </el-form>
             <div slot="footer" class="dialog-footer">
-                <el-button size="mini" @click="toCancelAdd('ruleForm')">取 消</el-button>
-                <el-button size="mini" type="primary" @click="toSave('ruleForm')">确 定</el-button>
+                <el-button size="mini" @click="toCancelAdd('ruleForm_2')">取 消</el-button>
+                <el-button size="mini" type="primary" @click="toSave('ruleForm_2')">确 定</el-button>
             </div>
         </el-dialog>
         <!-- 分页和一键删除按钮 -->
@@ -554,10 +570,10 @@ export default {
             applyData:[],
             //校验规则
             rules: {
-                name: [{ required: true, message: "请输入公司名称", trigger: "blur" }],
+                id: [{ required: true, message: "请选择公司名称", trigger: "change" }],
                 num: [{ required: true, message: "请输入招聘人数", trigger: "blur" }],
                 salary: [{ required: true, message: "请输入工作薪水", trigger: "blur" }],
-                workingTime: [{ required: true, message: "请输入工作时长", trigger: "blur" }],
+                workingHours: [{ required: true, message: "请输入工作时长", trigger: "blur" }],
                 job: [{ required: true, message: "请输入职位类型", trigger: "blur" }],
                 title: [
                 { required: true, message: "请输入招聘标题", trigger: "blur" }
@@ -579,15 +595,52 @@ export default {
                 { required: true, message: "请选择省份", trigger: "change" }
                 ],
                 city: [{ required: true, message: "请选择城市", trigger: "change" }]
-            }
-            
+            },
+            // 以下是时间选择模块的数据
+            pickerOptions: {
+                shortcuts: [{
+                    text: '最近一周',
+                    onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+                    picker.$emit('pick', [start, end]);
+                    }
+                }, {
+                    text: '最近一个月',
+                    onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+                    picker.$emit('pick', [start, end]);
+                    }
+                }, {
+                    text: '最近三个月',
+                    onClick(picker) {
+                    const end = new Date();
+                    const start = new Date();
+                    start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+                    picker.$emit('pick', [start, end]);
+                    }
+                }]
+            },
+            value1: '',
+            value2: ''         
         };
     },
     computed: {},
     methods: {
         beforeClose() {
-            this.$refs["ruleForm"].resetFields();
-            this.editVisible = false;
+            if(this.editVisible){
+                this.$refs["ruleForm_1"].resetFields();
+                this.editVisible = false;
+            }
+            else{
+                this.$refs["ruleForm_2"].resetFields();
+                this.addVisible = false;
+            }    
+            
+            
         },
         //关闭编辑对话框
         toCancelEdit(formName) {
@@ -605,28 +658,32 @@ export default {
         toSave(formName) {
             //发布招聘信息
             if(this.addVisible){
-                // 将当前记录设置为空
-                this.currentRecord={};
+                
                 // 验证表单
                 this.$refs[formName].validate(async valid => {
                 if (valid) {
                     //通过验证就保存
                     try {
                         let val=this.currentRecord;
-                        // delete val.publishTime;
+                        // 将当前记录id和时间设置为空
+                        delete val.id;
+                        delete val.publishTime;
+                        delete val.startTime
+                        delete val.endTime;
+
                         // delete val.startTime
                         // delete val.endTime;
                         let res = await RecruitsaveOrUpdate(val);
                         if (res.status === 200) {
                             this.getAllData();
-                            this.editVisible = false;
+                            this.addVisible = false;
                             config.successMsg(this, "新增成功");
                         } else {
-                        config.errorMsg(this, "新增失败");
+                        config.errorMsg(this, "新增失败1");
                         }
                     } catch (error) {
                         console.log(error);
-                        config.errorMsg(this, "新增失败");
+                        config.errorMsg(this, "新增失败2");
                     }
                 } else {
                     console.log("表单验证失败！");
@@ -708,7 +765,10 @@ export default {
             this.currentRecord = { ...row };
             this.editVisible = true;
         },
-
+        // 发布招聘信息
+        addRecruit(){
+            this.addVisible = true;
+        },
         /**
          * 获取全部招聘信息
          */
@@ -720,7 +780,7 @@ export default {
             try {
                 var data=await findRecruitAll();
                 let newdata=data.data.filter(function hehe(item){
-                     return true;//筛选条件item.businessId!=null
+                     return item.status=="正在招聘";//筛选条件item.businessId!=null
                  })
                 newdata.forEach(element => {
                     if(element!=null){

@@ -2,8 +2,8 @@
  * @Author: liuyr 
  * 招聘管理API
  * @Date: 2019-12-22 18:54:17 
- * @Last Modified by: liangjs
- * @Last Modified time: 2019-12-28 19:53:09
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2019-12-28 21:04:33
  */
 
 import axios from '@/utils/axios'
@@ -100,6 +100,14 @@ export  function findAllBusiness(){
     return axios.get('/Business/findAll');
 }
 
+/****
+ * 查找所有城市信息
+ * @param {object} param{none} 
+ */
+export  function findAllCity(){
+    return axios.get('/City/findAll');
+}
+findAllCity
 /**
  * 新增或修改招聘信息
  * @param {object} param{obj:""} 

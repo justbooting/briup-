@@ -2,8 +2,8 @@
  * @Author: liuyr 
  * 城市模块API
  * @Date: 2019-12-22 18:54:17 
- * @Last Modified by: liuyr
- * @Last Modified time: 2019-12-25 09:34:10
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2019-12-28 19:12:43
  */
 import axios from '@/utils/axios'
 /**
@@ -32,7 +32,7 @@ export function findCityById(param) {
  * 通过省份id查找城市信息
  * @param {Object} param {provinceId:''}
  */
-export function findCityByProvinceId(param) {
+export function findByProvinceIdCity(param) {
   return axios.get('/City/findByProvinceId', {
     params: param
   });
