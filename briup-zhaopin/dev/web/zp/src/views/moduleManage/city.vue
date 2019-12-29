@@ -3,7 +3,7 @@
 * 职位管理页面
 * @Date: 2019-12-23 17:11:53 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-12-28 21:18:31
+ * @Last Modified time: 2019-12-29 08:49:12
 */
 <template>
 <div id="modulePosition">
@@ -26,6 +26,7 @@
 
 	<!-- {{provinceData}} -->
 	<el-table :data="provinceData" style="width: 100%">
+		<!-- 下面的city是一个省份的全部城市 -->
 		<el-table-column type="expand" prop="city">
 			<template  slot-scope="scope">
 				<el-table :data="scope.row.city">
@@ -37,7 +38,8 @@
 				</el-table><br>				
 				<li id="font_li" >
 					<button id="span_toadd" @click="toAddCity(scope.row.id)">添加</button>
-				<li id ="li_boot"><input type="text"></li>
+					<!-- 下面的city是要新增的城市 -->
+				<li id ="li_boot"><input type="text" v-model="city"></li>
 	 	  	</template>
 		
 		</el-table-column>
@@ -70,7 +72,7 @@
 </template>
 
 <script>
-import { findAllCity,findCityById} from "@/api/city.js";
+import { findAllCity,findCityById,saveOrUpdateCity} from "@/api/city.js";
 import { findAllProvince,saveOrUpdateProvince } from "@/api/province.js";
 import config from "@/utils/config.js";
 export default {
@@ -79,7 +81,6 @@ data() {
 		dialogFormVisible1:false,//設置添加省份表單可視
 		city:"",//要添加城市的名
 		cityData:[],
-		cityAllArr:[],
 		cityArr:[],
 
 		totalArr:[],
@@ -99,22 +100,23 @@ methods: {
 	// 新增城市
 	async toAddCity(provinceId){
 		try {
-			console.log(typeof(this.provinceId));
-			let res= await saveOrUpdateProvince({provinceId : this.provinceId,});
+			console.log(provinceId);
+			let res= await saveOrUpdateCity({provinceId : provinceId,
+			name: this.city});
 			if(res.status!=200){
-				config.errrMsg(this,"添加省份失敗！");
-				this.dialogFormVisible1 = false;
-			}
-			else{
+				config.errrMsg(this,"添加城市失敗！");
 				
-				config.successMsg(this,"添加省份成功！");
-				this.dialogFormVisible1 = false;
+			}
+			else{		
+				config.successMsg(this,"添加城市成功！");
+				this.findProvinceData();
+				// this.dialogFormVisible = false;
 			}
 		} catch (error) {
 			console.log(error);
 		}
-		this.dialogFormVisible = true;
-        this.getProvinceData();
+		// this.dialogFormVisible = true;
+        // this.getProvinceData();
 	},
 	
 	//   toAdd() {
@@ -168,6 +170,7 @@ methods: {
 		})
 		setTimeout(()=>{
 			this.provinceData = temp;
+			this.findProvinceData();
 		},500)
 		
 	} catch (err) {

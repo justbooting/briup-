@@ -1,13 +1,8 @@
 ﻿/*
  * @Author: huangjh 
  * @Date: 2019-12-25 14:32:55 
-<<<<<<< HEAD
  * @Last Modified by: mikey.zhaopeng
  * @Last Modified time: 2019-12-28 19:31:54
-=======
- * @Last Modified by: huangjh
- * @Last Modified time: 2019-12-27 20:50:51
->>>>>>> 768c633a1ffc51e5ac35912f677a95b767b5150b
  */
 <template>
   <div id="jobList">

@@ -17,7 +17,7 @@ export  function findAllBusiness() {
    * @param {object} param 
    * {id:''}
    */
-  export  function deleteByIdBusiness(param) {
+  export  function deletesByIdBusines(param) {
     return axios.post('/Business/deleteById',param);
    
   }
@@ -48,6 +48,7 @@ export  function findAllBusiness() {
     return axios.get('/Business/findByIndustry',{params:param});
    
   }
+
    /**
    * 通过位置查找商家信息
    * @param {object} param 
@@ -58,7 +59,7 @@ export  function findAllBusiness() {
    
   }
   /**
-   * 通过位置查找商家信息
+   * 通过省份查找商家信息
    * @param {object} param 
    * {Province :''}
    */
@@ -67,7 +68,7 @@ export  function findAllBusiness() {
    
   }
    /**
-   * 通过位置查找商家信息
+   * 通过规模查找商家信息
    * @param {object} param 
    * {Scale :''}
    */
@@ -80,4 +81,33 @@ export  function findAllBusiness() {
    
   }
 
-  
+  /**
+ * 通过id查找商家信息
+ * @param {Object} param {id:''}
+ */
+export function findBusinessById(param) {
+  return axios.get('/Business/findById', {
+    params: param
+  });
+}
+/**
+ * 通过企业名称查找企业信息
+ */
+export function findEmploymentByTitle(param) {
+  return axios.get('/Employment/findByTitle',{
+    params:param
+  });
+}
+/**
+ * 查找所有招聘信息
+ */
+export function findAllEmployment() {
+  return axios.get('/Employment/findAll');
+}
+/**
+ * 通过职位查找企业信息
+ */
+export function findAllEmploymentByJob(param) {
+  return axios.get('/Employment/findByJob',{params:param
+  });
+}

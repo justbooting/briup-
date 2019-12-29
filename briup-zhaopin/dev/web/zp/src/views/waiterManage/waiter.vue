@@ -3,7 +3,7 @@
  * 客服列表页面
  * @Date: 2019-12-23 17:11:53 
  * @Last Modified by: Carl
- * @Last Modified time: 2019-12-28 16:48:15
+ * @Last Modified time: 2019-12-28 22:22:59
  */
 <template>
   <div id="waiterList">
@@ -43,10 +43,7 @@
 
     <!-- 检索输入框 -->
     <div id="inputLocation">
-      {{inputKeyWord}}
-      {{inputValue}}
-
-      <el-input placeholder="请输入关键字" v-model="inputKeyWord" class="inputSize">
+      <el-input placeholder="请输入关键字" v-model="inputKeyWord" class="inputSize" clearable>
         <el-select v-model="inputValue" slot="prepend" placeholder="关键字" class="selectSize">
           <el-option label="id" value="inputValue.id"></el-option>
           <el-option label="用户名" value="inputValue.username"></el-option>
@@ -101,7 +98,6 @@
       :title="'客服'+currentWaiter.username+'('+currentWaiter.realname+')'+'  工作分配'" 
       :visible.sync="seeVisible"
       width = "60%">
-        {{currentWaiter}}
         <el-table ref="multipleTable" tooltip-effect="dark" :data="workDistributeList" style="width: 100%" :default-sort = "{prop: 'date', order: 'descending'}">
           <el-table-column align="center" type="selection" width="55"></el-table-column>
           <el-table-column align="center" prop="jobhunter.realname" label="求职人" ></el-table-column>
@@ -112,14 +108,16 @@
           <el-table-column align="center" label="经手人" >
             <template slot-scope="scope">
               <!-- 分配动作 -->
-              <el-button @click="toDistributeWaiter(scope.row)" type="text" size="small">无</el-button>
+              <el-button @click="toDistributeWaiter(scope.row,currentWaiter)" type="text" size="small">无</el-button>
             </template>
           </el-table-column>
           <el-table-column align="center" prop="askTime" label="申请时间" sortable ></el-table-column>
         </el-table>
 
         <!-- 分配表格分页 -->
-      <div id="tableFooter">
+        <div id="tableFooter">
+          <el-button type="info" size="small">自动分配</el-button>
+          <el-button type="info" size="small">自动填满</el-button>
           <div class="pageDiv">
             <el-pagination
               @current-change = "secondPageChange"
@@ -130,34 +128,33 @@
               :total="jobHunterData.length">
             </el-pagination>
           </div>
-      </div>
+        </div>
       </el-dialog>     
     </div>
 
     <!-- 新增客服 -->
     
     <div id="addWaiterDiv">
-      
       <el-dialog title="添加客服" :visible.sync="addWaiterVisible">
-        <el-form :model="addWaiter">
-          <el-form-item label="用户名(username)：" :label-width="formLabelWidth">
-            <el-input v-model="addWaiter.username" auto-complete="off"></el-input>
+        <el-form :model="addWaiter" :rules="rules" ref="ruleForm">
+          <el-form-item label="用户名(username)：" :label-width="formLabelWidth" prop="username">
+            <el-input v-model="addWaiter.username" auto-complete="off" clearable></el-input>
           </el-form-item>
-          <el-form-item label="真实姓名(realname)：" :label-width="formLabelWidth" >
-            <el-input v-model="addWaiter.realname" auto-complete="off"></el-input>
+          <el-form-item label="真实姓名(realname)：" :label-width="formLabelWidth" prop="realname">
+            <el-input v-model="addWaiter.realname" auto-complete="off" clearable></el-input>
           </el-form-item>
-          <el-form-item label="性别(gender)：" :label-width="formLabelWidth">
+          <el-form-item label="性别(gender)：" :label-width="formLabelWidth" prop="gender">
             <el-radio v-model="addWaiter.gender" label="男">男</el-radio>
             <el-radio v-model="addWaiter.gender" label="女">女</el-radio>
           </el-form-item>
-          <el-form-item label="在线情况(isOnline)：" :label-width="formLabelWidth" >
+          <el-form-item label="在线情况(isOnline)：" :label-width="formLabelWidth" prop="status">
             <el-radio v-model="addWaiter.status" label="在线">在线</el-radio>
             <el-radio v-model="addWaiter.status" label="离线">离线</el-radio>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="addCancel">取 消</el-button>
-          <el-button type="primary" @click="addConfirm">确 定</el-button>
+          <el-button type="primary" @click="addConfirm('ruleForm')">确 定</el-button>
         </div>
 
       </el-dialog>
@@ -177,7 +174,7 @@
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件或表格拖到此处，或<em>点击上传</em></div>
         </el-upload>
-        <span slot="footer" class="dialog-footer" id="btnCenter">
+        <span slot="footer" class="dialog-footer">
           <el-button type="primary" @click="importVisible = false" size ="medium">下载模板</el-button>
           <el-button type="success" @click="importVisible = false" size ="medium">开始导入</el-button>
         </span>
@@ -199,6 +196,7 @@ import {
         deleteCustomerServiceById,
         saveOrUpdateCustomerService,
         findCustomerServiceById,
+        findCustomerServiceByUsername,
                                           } from "@/api/waiter.js";
 
 import { findAllWithJobhAndEmpl } from "@/api/emp-jobhunter.js";
@@ -251,13 +249,13 @@ export default {
       secondCurrentPage:1,
 
       //分配表格每页条数
-     secondPageSize:config.secondePageSize,
+     secondPageSize:config.secondPageSize,
 
      //添加客服表单显示与否
      addWaiterVisible:false,
     
      //修改模态框标题所占宽度
-     formLabelWidth:'160px',
+     formLabelWidth:'180px',
 
      //对象存放新增客服的信息
      addWaiter:{},
@@ -269,9 +267,15 @@ export default {
      inputKeyWord:'',
 
      //根据关键字的下拉，获取内容
-     inputValue:{},
+     inputValue:'',
 
-     //
+     //校验规则
+     rules: {
+       username: [{ required: true, message: "请输入客服用户名", trigger: "blur" }],
+       realname: [{ required: true, message: "请输入客服真实姓名", trigger: "blur" }],
+       gender: [{ required: true, message: '请选择性别', trigger: 'change' }],
+       status: [{ required: true, message: '请选择在线情况', trigger: 'change' }],
+     }
 
     };
   },
@@ -288,7 +292,7 @@ export default {
     workDistributeList(){
       let temp = [...this.jobHunterData];
       let page = this.secondCurrentPage;
-      let pageSize = config.secondePageSize;
+      let pageSize = config.secondPageSize;
 
       //日期格式处理
       let changeDateList = temp.slice((page-1)*pageSize,page*pageSize);
@@ -356,6 +360,7 @@ export default {
 
     //根据是否在线筛选客服
     async isOnlineChange(val){
+      this.currentPage = 1;
       // console.log(val);
       this.genderValue = '';
       if(val){
@@ -372,6 +377,7 @@ export default {
 
     //根据性别筛选客服
     async genderChange(val){
+      this.currentPage = 1;
       // console.log(val);
       this.isOnlineValue = '';
       if(val){
@@ -388,7 +394,7 @@ export default {
 
     //搜索框判断
     judgement(key,val){
-      console.log(key,val);
+      // console.log(key,val);
       if(key == "inputValue.id"){
         this.idChange(val);
       }else if(key == "inputValue.username"){
@@ -398,34 +404,53 @@ export default {
       }
     },
  
-    //根据id筛选客服
+    //根据id筛选客服（！！！返回是一个对象，传表格需要包装成数组）
     async idChange(val){
       // console.log(val);
       if(val == ''){
         config.errorMsg(this, "查询失败，请输入内容");
+        this.findAllWaiter();
         return 0;
       }
       try {
         let res = await findCustomerServiceById({id:val});
+        //输入为空判断是null（空对象）
+        console.log(res.data);
+        console.log(res.data == null);
         if(res.data == null){
           config.errorMsg(this, "查询失败，无该数据");
-          this.waiterData = null;
+          this.waiterData = [];
           return 0;
         }
         this.waiterData = [res.data];
-
+        config.successMsg(this,'查询成功');
       } catch (error) {
         config.errorMsg(this, "id查找错误，请检查输入内容");
       }
     },
 
-    //根据用户名(username)筛选客服
+    //根据用户名(username)筛选客服（！！！返回是一个数组，可以直接传）
     async usernameChange(val){
-      console.log(val);
+      // console.log(val);
+      if(val == ''){
+        config.errorMsg(this, "查询失败，请输入内容");
+        this.findAllWaiter();
+        return 0;
+      }
+      try {
+        let res = await findCustomerServiceByUsername({username:val});
+        //输入为空判断是数组长度（空数组）
+        if(res.data.length == 0){
+          config.errorMsg(this, "查询失败，无该数据");
+          this.waiterData = [];
+          return 0;
+        }
+        this.waiterData = res.data;
+        config.successMsg(this,'查询成功');        
+      } catch (error) {
+        config.errorMsg(this, "id查找错误，请检查输入内容");
+      }    
     },
-
-
-
 
     //页数发生改变
     pageChange(page){
@@ -453,22 +478,19 @@ export default {
     },
 
     //新增客服点击确定（提交表单后清空）
-    addConfirm(){
+    addConfirm(formName){
       //提交表单
-      console.log({...this.addWaiter});
-      this.toSave();
-
-      //提交表单后清空
-      this.addWaiter.username ='';
-      this.addWaiter.realname ='';
-      this.addWaiter.gender ='';
-      this.addWaiter.status='';
-
-      //新增结束模态框关闭
-      this.addWaiterVisible = false;
-      //新增结束后刷新
-      this.findAllWaiter();
-
+      //表单验证（对按钮）
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          //通过验证
+          this.toSave();
+        } else {
+          config.errorMsg(this, "新增客服失败");
+          console.log('error submit!!');
+          return false;
+        }
+      });
     },
 
     //新增客服点击取消（模态框清空）
@@ -486,12 +508,21 @@ export default {
       try {
         // console.log({...this.addWaiter});
         let res = await saveOrUpdateCustomerService({...this.addWaiter});
-        console.log(res.status);
+        // console.log(res.status);
         if (res.status === 200) {
           config.successMsg(this, "新增成功");
         } else {
           config.errorMsg(this, "新增失败");
         }
+        this.addWaiterVisible = false;
+        //提交表单后清空
+        this.addWaiter.username ='';
+        this.addWaiter.realname ='';
+        this.addWaiter.gender ='';
+        this.addWaiter.status='';
+
+        //新增结束后刷新
+        this.findAllWaiter();
       } catch (error) {
         console.log(error);
         config.errorMsg(this, "新增失败");
@@ -501,7 +532,30 @@ export default {
     //点击导入客服时的方法（显示模态框）
     importWaiterMethod(){
       this.importVisible = true;
-    }
+    },
+
+    //（二级菜单分配工作下）点val击单个分配客服给求职者
+    toDistributeWaiter(val,currentWaiter){
+      console.log(val);
+       this.$confirm('是否将客服 '+currentWaiter.username+' 分配给求职者 '+val.jobhunter.realname, '分配提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {         
+          //名字变为客服名
+          
+          this.$message({
+            type: 'success',
+            message: '分配成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消分配'
+          });          
+        });
+    },
+
 
   },
 
@@ -594,6 +648,15 @@ export default {
 
     #descr2{
       color: red;
+    }
+
+    #uploadCenter{
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    #btnCenter{
+      text-align: center;
     }
 
   }
