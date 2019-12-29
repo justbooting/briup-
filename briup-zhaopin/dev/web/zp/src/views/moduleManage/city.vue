@@ -3,7 +3,7 @@
 * 职位管理页面
 * @Date: 2019-12-23 17:11:53 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-12-29 08:49:12
+ * @Last Modified time: 2019-12-29 09:15:05
 */
 <template>
 <div id="modulePosition">
@@ -170,7 +170,7 @@ methods: {
 		})
 		setTimeout(()=>{
 			this.provinceData = temp;
-			this.findProvinceData();
+			// this.findProvinceData();
 		},500)
 		
 	} catch (err) {

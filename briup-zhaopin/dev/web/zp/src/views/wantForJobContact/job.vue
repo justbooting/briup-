@@ -2,7 +2,7 @@
  * @Author: huangjh 
  * @Date: 2019-12-25 14:32:55 
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2019-12-28 19:31:54
+ * @Last Modified time: 2019-12-29 15:11:06
  */
 <template>
   <div id="jobList">
@@ -156,5 +156,10 @@ export default {
   span{
     color: #777;
   }
+}
+.pageDiv{
+  float: right;
+  margin-top: 30px;
+  margin-right: 300px;
 }
 </style>

@@ -2,8 +2,8 @@
  * @Author: liuyr 
  * 商家审核页面
  * @Date: 2019-12-23 17:11:53 
- * @Last Modified by: liuyr
- * @Last Modified time: 2019-12-28 22:52:22
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2019-12-29 15:24:17
  */
 <template>
   <div id="businessCheck">
@@ -18,9 +18,9 @@
   size="small">
     <el-option
       v-for="item in nameData"
-      :key="item.id"
-      :label="item.name"
-      :value="item.name">
+      :key="item"
+      :label="item"
+      :value="item">
     </el-option>
   </el-select>
 </template>
@@ -33,7 +33,7 @@
       @selection-change="selectionChange"
      >
       <el-table-column  type="selection" width="55"> </el-table-column>
-      <el-table-column  prop="name"    label="企业名称"    width="120">     </el-table-column>
+      <el-table-column  prop="name" label="企业名称"    width="120">     </el-table-column>
       <el-table-column  prop="contactName"   label="联系人"   width="120"> </el-table-column>
       <el-table-column  prop="contactPhone"  label="联系方式"  show-overflow-tooltip> </el-table-column>
       <el-table-column  prop="industry" label="行业" show-overflow-tooltip> </el-table-column>
@@ -47,8 +47,8 @@
         <!-- <el-table-column  prop="auditStatus" label="状态" show-overflow-tooltip> </el-table-column> -->
       <el-table-column align="center" label="操作" width="200">
         <template slot-scope="scope">
-          <el-button type="success" size="mini" @click= "toagree" :visible.sync= "toagreeVisible">通过</el-button>
-              <el-button type="danger" size="mini" @click= "torefuse" :visible.sync= "torefuseVisible">拒绝</el-button>
+          <el-button type="success" size="mini" @click= "toagree" >通过</el-button>
+              <el-button type="danger" size="mini" @click= "torefuse" >拒绝</el-button>
             <!-- <div > </div> -->
              <!-- <div :visible.sync = "agreeVisible"> 审核通过</div>  -->
             <!-- <div :visible.sync = "refuseVisible" >已拒绝</div> --> 
@@ -78,7 +78,7 @@
          type="textarea"
          :rows="4"
          placeholder="请输入理由..."
-         v-model="textarea">
+        >
        </el-input>
        <div class="dialogbtn"><el-button type="primary" size="small" >确定</el-button></div>
     </el-dialog>
@@ -88,7 +88,7 @@
   :visible.sync="seeVisible">
   <div class="tosee">
     <div ></div>
-    <div>{{check.scale}}</div>
+    <div><span>公司规模：{{check.scale}}</span></div>
   </div>
   <div class="tosee">
     <div ><span>行业类型：{{check.industry}}</span></div>
@@ -103,7 +103,6 @@
          </a> 
   </div> -->
   </div>
-  
 </el-dialog>
     </div>
        
@@ -111,8 +110,8 @@
 </template>
 
 <script>
-import {findAllBusiness,findBusinessById} from "@/api/business.js";
-import {findAllEmployment,findEmploymentByTitle} from "@/api/employment.js";
+import {findAllBusiness,findEmploymentByTitle} from "@/api/business.js";
+import {findAllEmployment} from "@/api/employment.js";
 import config from "@/utils/config.js";
 export default {
   data() {
@@ -139,20 +138,21 @@ export default {
       pageSize:config.pageSize,
       //显示当前页
       currentpage:1,
-      //商家列表/表格数据
-      // businessList:[]
+      
+      businessname:[],//下拉框
       //当前查看
       check:{},
       //模态框显示与否
       seeVisible:false,
       //拒绝对话框显示与否
       dialogTableVisible:false,
-      //
       id:"",
       //通过审核状态隐藏
       agreeVisible:false,
       //已拒绝状态隐藏
       refuseVisible:false,
+      //批量删除ids
+      ids:[]
      
     };
   },
@@ -172,47 +172,111 @@ export default {
       this.currentpage = page;
     },
    
-    //查找所有招聘企业信息
+    //查找所有招聘企业
    async findAllbus(){
       try {
-        //查找招聘企业所有信息
+        //查找招聘企业
         let res = await findAllBusiness();
         this.businessData=res.data;
-        this.nameArr= res.data.map(item=>{
+        // console.log(this.businessData);
+
+        let nameArr= res.data.map(item=>{
           return item.name;
-        })
+        });
+        console.log(nameArr);
+        this.nameData = [...new Set(nameArr)];
       } catch (error) {
         config.errorMsg(this,'查找商家信息错误');
       }
     },
-    //查询所有的企业名称
+
+
+    //通过企业名找企业
     async findAllname(){
       try {
         let res= await findAllBusiness();
-        this.nameData=res.data;
+        this.businessData=res.data;
+        this.currentPage = 1;
+        //状态数组
+        let nameArr = res.data.map(item => {
+          return item.name;
+      });
+      // console.log(statusArr);
+          //去重
+	  	this.nameData = [...new Set(nameArr)];
+		// console.log(this.statusData);
       } catch (error) {
         config.errorMsg(this,"查找错误")
       }
     },
+
+
     //通过企业名称进行筛选条件
   async  namechange(val){
     //val是option的value值
     // console.log(namechange)
       if (val) {
+        console.log(val);
+        console.log("xxxx");
         try {
-       let res = await findBusinessById({id:val});
-       this.businessData = res.data;
+       let res = await findAllBusiness();
+        let temp = res.data;
+        let resu = temp.filter((item)=>{
+			  return item.name === val;
+		    });
+
+       this.businessData = resu;
+
        this.currentpage=1;
       } catch (error) {
-        config.errorMsg(this,'通过企业名称查找招聘信息失败')
+        config.errorMsg(this,'通过行业查找招聘信息失败')
       }
       } else {
         this.findAllbus();
       }
     },
-    //点击实现一键通过
-    toallagree(){
 
+
+    //点击实现一键通过
+    toallagree(id){
+       //获取要批量删除的id  this.ids
+      let ids = this.ids;
+      if (ids.length > 0) {
+        this.$alert("通过审核？", "提示", {
+          confirmButtonText: "通过",
+          callback: action => {
+            if (action === "confirm") {
+              let result = [];
+              ids.forEach(async id => {
+                try {
+                  let res = await deleteBusinessById({ id: id });
+                  result.push(res.status);
+                } catch (error) {
+                  result.push(500);
+                }
+              });
+              setTimeout(() => {
+                // console.log(result);
+                //判断是否都是200
+                let resu = result.every(item => {
+                  return item === 200;
+                });
+                if (resu) {
+                  config.successMsg(this, "批量操作成功");
+                } else {
+                  config.errorMsg(this, "批量操作失败");
+                }
+                this.findAllBus();
+              }, 2000);
+            }
+          }
+        });
+      } else {
+        this.$message({
+          message: "请选中要通过的数据",
+          type: "warning"
+        });
+      }
     },
     //点击查看
     toSee(row){
@@ -221,9 +285,31 @@ export default {
       console.log(row);
     },
     toagree(){
-      // alert("通过");
-      this.agreeVisible=true;
-      //  this.toagreeVisible=false;
+       this.$confirm("是否审核通过?", "提示", {
+        confirmButtonText: "通过",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(async () => {
+          //访问后台接口
+          try {
+            let res = await deleteBusinessById({ id: id });
+            if (res.status === 200) {
+              config.successMsg(this, "删除成功");
+              this.findAllBus();
+            } else {
+              config.errorMsg(this, "删除失败");
+            }
+          } catch (error) {
+            config.errorMsg(this, "删除失败");
+          }
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
     },
     torefuse(){
       this.dialogTableVisible=true;
@@ -234,7 +320,7 @@ export default {
 },
  created() {
     this.findAllbus();
-    this.findAllname();
+    // this.findAllname();
   },
   mounted() {}
 };

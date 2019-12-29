@@ -2,7 +2,7 @@
  * @Author: fanqn 
  * @Date: 2019-12-25 09:44:14 
  * @Last Modified by: fanqn
- * @Last Modified time: 2019-12-26 18:58:00
+ * @Last Modified time: 2019-12-28 20:30:19
  */
 import qs from "qs";
 import axios from '@/utils/axios'
@@ -53,7 +53,7 @@ export function findJobhunterByTelephone(param){
 }
 
 /**
-* 通过省份查找用户信息
+* 通过用户名查找用户信息
 * @param {object} param  {Username:''}
 */
 export function findJobhunterByUsername(param){
@@ -61,7 +61,7 @@ export function findJobhunterByUsername(param){
 }
 
 /**
-*快速查找
+*快速注册报名
 * @param {object} param  {quickRegistration:''}
 */
 export function quickRegistrationJobhunter(param){

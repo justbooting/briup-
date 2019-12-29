@@ -17,7 +17,7 @@ export  function findAllBusiness() {
    * @param {object} param 
    * {id:''}
    */
-  export  function deletesByIdBusines(param) {
+  export  function deleteByIdBusiness(param) {
     return axios.post('/Business/deleteById',param);
    
   }
