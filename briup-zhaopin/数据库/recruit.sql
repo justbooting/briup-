@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50529
 File Encoding         : 65001
 
-Date: 2019-12-28 22:51:52
+Date: 2019-12-29 15:57:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -71,7 +71,7 @@ CREATE TABLE `zp_business` (
 -- ----------------------------
 INSERT INTO `zp_business` VALUES ('2355', '可乐金融公司', '张开', '0909-7896789', '金融', '文昌路', '100-200', '2014-04-19', '10万', '可乐金融公司是一家集生物产品等委托生产、推广于一体的现代化股份制集团公司。公司以客户需求为经营导向，以人类大众健康为己任，提倡健康的生活方式。', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577270460404&di=22afcdf32649055dff3e5d570fdb40d9&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190129%2Fa05e6d1a31734b54a3e139795ca06a4e.jpeg', '审核通过', '广西', '柳州');
 INSERT INTO `zp_business` VALUES ('2902', 'A公司', '李依依', '0909-7896789', '科技', '学院路', '400-600', '2013-11-11', '100万', 'A公司是一家集生物产品等委托生产、推广于一体的现代化股份制集团公司。公司以客户需求为经营导向，以人类大众健康为己任，提倡健康的生活方式。', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577270460404&di=22afcdf32649055dff3e5d570fdb40d9&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190129%2Fa05e6d1a31734b54a3e139795ca06a4e.jpeg', '审核通过', '江苏', '苏州');
-INSERT INTO `zp_business` VALUES ('2903', 'B公司', '包青天', '0808-7878787', '软件', '工业园区', '20-100', '2012-10-04', '100万', 'B公司是一家集生物产品等委托生产、推广于一体的现代化股份制集团公司。公司以客户需求为经营导向，以人类大众健康为己任，提倡健康的生活方式。', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577270460404&di=22afcdf32649055dff3e5d570fdb40d9&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190129%2Fa05e6d1a31734b54a3e139795ca06a4e.jpeg', '审核通过', '江苏', '昆山');
+INSERT INTO `zp_business` VALUES ('2903', 'B公司', '包青天', '0808-7878787', '软件', '得的', '20-100', '2012-10-04', '100万', 'B公司是一家集生物产品等委托生产、推广于一体的现代化股份制集团公司。公司以客户需求为经营导向，以人类大众健康为己任，提倡健康的生活方式。', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577270460404&di=22afcdf32649055dff3e5d570fdb40d9&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190129%2Fa05e6d1a31734b54a3e139795ca06a4e.jpeg', '审核通过', '江苏', '昆山');
 INSERT INTO `zp_business` VALUES ('2904', 'C公司', '王玉', '6787-7878756', '金融', '闻喜', '200-400', '2017-12-09', '20万', 'C公司是一家集生物产品等委托生产、推广于一体的现代化股份制集团公司。公司以客户需求为经营导向，以人类大众健康为己任，提倡健康的生活方式。', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577270460404&di=22afcdf32649055dff3e5d570fdb40d9&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190129%2Fa05e6d1a31734b54a3e139795ca06a4e.jpeg', '审核通过', '山西', '运城');
 INSERT INTO `zp_business` VALUES ('2905', 'D公司', '李田田', '0359-4567654', '软件', '尖草坪区', '400-600', '2016-09-24', '100万', 'D公司是一家集生物产品等委托生产、推广于一体的现代化股份制集团公司。公司以客户需求为经营导向，以人类大众健康为己任，提倡健康的生活方式。', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577270460404&di=22afcdf32649055dff3e5d570fdb40d9&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190129%2Fa05e6d1a31734b54a3e139795ca06a4e.jpeg', '审核未通过', '山西', '太原');
 INSERT INTO `zp_business` VALUES ('2928', '22ww', 'q覃革', 'q6787-7878756', '科技q', 'q文昌路', 'q200-400', '2014-04-19', '100万', 'q该公司是一家集生物产品等委托生产、推广于一体的现代化股份制集团公司。公司以客户需求为经营导向，以人类大众健康为己任，提倡健康的生活方式。', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577270460404&di=22afcdf32649055dff3e5d570fdb40d9&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190129%2Fa05e6d1a31734b54a3e139795ca06a4e.jpeg', '待审核', '广西', '柳州');
@@ -85,7 +85,6 @@ INSERT INTO `zp_business` VALUES ('2937', '12', '2', '6787-7878756', '科技', '
 INSERT INTO `zp_business` VALUES ('2938', '1', '1', '6787-7878756', '软件', '文昌路', '200-400', '2014-04-19', '100万', '该公司是一家集生物产品等委托生产、推广于一体的现代化股份制集团公司。公司以客户需求为经营导向，以人类大众健康为己任，提倡健康的生活方式。', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577270460404&di=22afcdf32649055dff3e5d570fdb40d9&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190129%2Fa05e6d1a31734b54a3e139795ca06a4e.jpeg', '待审核', '广西', '柳州');
 INSERT INTO `zp_business` VALUES ('2939', '2', '2', '6787-7878756', '软件', '文昌路', '200-400', '2014-04-19', '100万', '该公司是一家集生物产品等委托生产、推广于一体的现代化股份制集团公司。公司以客户需求为经营导向，以人类大众健康为己任，提倡健康的生活方式。', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577270460404&di=22afcdf32649055dff3e5d570fdb40d9&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190129%2Fa05e6d1a31734b54a3e139795ca06a4e.jpeg', '待审核', '广西', '柳州');
 INSERT INTO `zp_business` VALUES ('2940', '3', '3', '6787-7878756', '软件', '文昌路', '200-400', '2014-04-19', '100万', '该公司是一家集生物产品等委托生产、推广于一体的现代化股份制集团公司。公司以客户需求为经营导向，以人类大众健康为己任，提倡健康的生活方式。', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577270460404&di=22afcdf32649055dff3e5d570fdb40d9&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190129%2Fa05e6d1a31734b54a3e139795ca06a4e.jpeg', '待审核', '广西', '柳州');
-INSERT INTO `zp_business` VALUES ('2941', '4', '4', '6787-7878756', '软件', '文昌路', '200-400', '2014-04-19', '100万', '该公司是一家集生物产品等委托生产、推广于一体的现代化股份制集团公司。公司以客户需求为经营导向，以人类大众健康为己任，提倡健康的生活方式。', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1577270460404&di=22afcdf32649055dff3e5d570fdb40d9&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190129%2Fa05e6d1a31734b54a3e139795ca06a4e.jpeg', '待审核', '广西', '柳州');
 
 -- ----------------------------
 -- Table structure for zp_city
@@ -98,7 +97,7 @@ CREATE TABLE `zp_city` (
   PRIMARY KEY (`id`),
   KEY `province_id` (`province_id`),
   CONSTRAINT `zp_city_ibfk_1` FOREIGN KEY (`province_id`) REFERENCES `zp_province` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=667 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=670 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of zp_city
@@ -118,6 +117,9 @@ INSERT INTO `zp_city` VALUES ('663', '鲲山5', '8');
 INSERT INTO `zp_city` VALUES ('664', '鲲山6', '8');
 INSERT INTO `zp_city` VALUES ('665', '随便', '21');
 INSERT INTO `zp_city` VALUES ('666', '随便', '8');
+INSERT INTO `zp_city` VALUES ('667', '南宁', '13');
+INSERT INTO `zp_city` VALUES ('668', '鲲山7', '8');
+INSERT INTO `zp_city` VALUES ('669', '贵港', '13');
 
 -- ----------------------------
 -- Table structure for zp_collect
@@ -147,7 +149,7 @@ CREATE TABLE `zp_customer_service` (
   `status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ID` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of zp_customer_service
@@ -156,7 +158,7 @@ INSERT INTO `zp_customer_service` VALUES ('30', '张益达', '李伟', '男', '�
 INSERT INTO `zp_customer_service` VALUES ('35', '客服一', '张三', '男', '离线');
 INSERT INTO `zp_customer_service` VALUES ('36', '客服二', '张小美', '女', '在线');
 INSERT INTO `zp_customer_service` VALUES ('37', '客服三', '李依依', '女', '离线');
-INSERT INTO `zp_customer_service` VALUES ('38', '客服四', '张黎', '男', '在线');
+INSERT INTO `zp_customer_service` VALUES ('39', '梁首长', '你猜', '男', '在线');
 
 -- ----------------------------
 -- Table structure for zp_employment
@@ -189,7 +191,7 @@ CREATE TABLE `zp_employment` (
   KEY `business_id` (`business_id`),
   CONSTRAINT `zp_employment_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `zp_jobs` (`id`),
   CONSTRAINT `zp_employment_ibfk_3` FOREIGN KEY (`business_id`) REFERENCES `zp_business` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3333 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3334 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of zp_employment
@@ -221,7 +223,6 @@ INSERT INTO `zp_employment` VALUES ('3223', '深渊组队', '一笑奈何', '820
 INSERT INTO `zp_employment` VALUES ('3320', '做五休二', '李伟', '18812344321', '坐班', '2019-12-28 17:24:02', null, null, null, '正在招聘', null, null, null, null, null, null, null, null, null);
 INSERT INTO `zp_employment` VALUES ('3321', '做五休二', '李伟', '18812344321', '坐班', '2019-12-28 17:24:58', null, null, null, '招聘已结束', null, null, null, null, null, null, null, null, null);
 INSERT INTO `zp_employment` VALUES ('3323', '做五休二', '李伟', '18812344321', '坐班', '2019-12-28 17:24:02', null, null, null, '正在招聘', null, null, null, null, null, null, null, null, null);
-INSERT INTO `zp_employment` VALUES ('3329', '前端', '123', '123', '前端工程师', '2019-12-28 17:24:02', '五险一金', '6000', '1234', '正在招聘', '50', '2355', '8', '7', '南昌', '江西', null, null, '拒绝');
 
 -- ----------------------------
 -- Table structure for zp_employment_jobhunter
@@ -515,20 +516,20 @@ CREATE TABLE `zp_jobhunter` (
   `current_status` varchar(255) DEFAULT NULL,
   `resume` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1482 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1504 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of zp_jobhunter
 -- ----------------------------
-INSERT INTO `zp_jobhunter` VALUES ('32', null, '', 'aaa', 'null', null, '423', '', '', '求职者', null);
-INSERT INTO `zp_jobhunter` VALUES ('1069', '长城', null, '李四', '女', '1997', '1', '博士', null, null, null);
+INSERT INTO `zp_jobhunter` VALUES ('32', '你猜', '123456', 'aaa', '女', '1998/5/19', '423', '小学', '8', '求职者', '无');
+INSERT INTO `zp_jobhunter` VALUES ('1069', '长城', '', '李四', '男', '1997', '1', '博士', '', '', '今年节假日');
 INSERT INTO `zp_jobhunter` VALUES ('1070', '三年级', '123123', '张三', '男', '1998.11.02', '15478459874', '专科', '朝九晚五', null, null);
-INSERT INTO `zp_jobhunter` VALUES ('1074', '外网', '111111111111', '张三', '女', '1997.08', '12728292', '大专', null, null, '');
+INSERT INTO `zp_jobhunter` VALUES ('1074', '外网', '111111111111', '张三', '女', '1997.08', '12728292', '大专', '', '', '');
 INSERT INTO `zp_jobhunter` VALUES ('1087', 'null', null, 'test', '男', '12', '123', '小学', null, null, null);
-INSERT INTO `zp_jobhunter` VALUES ('1136', '郝先生', null, '郝鸽鸽', 'male', null, '1', '本科', null, null, 'male');
+INSERT INTO `zp_jobhunter` VALUES ('1136', '郝先生', '', '郝鸽鸽', 'male', '1997', '1', '本科', '', '', 'male');
 INSERT INTO `zp_jobhunter` VALUES ('1153', 'hx', '1234', 'hx', '男', '1998.03', '123456789', '本科', '', null, '');
 INSERT INTO `zp_jobhunter` VALUES ('1177', null, '121', '皮卡丘', '女', '2000', '1234', '本科', null, '求职中', null);
-INSERT INTO `zp_jobhunter` VALUES ('1179', '皮卡丘', null, '皮卡皮卡', '男', '1997/5/20', '12345', '博士', '2年', null, null);
+INSERT INTO `zp_jobhunter` VALUES ('1179', '皮卡丘', '', '皮卡皮卡', '男', '1997/5/20', '12345', '博士', '2年', '', '');
 INSERT INTO `zp_jobhunter` VALUES ('1180', '皮卡丘', null, '皮卡皮卡', '男', '1997/5/20', '12345', '博士', '2年', null, null);
 INSERT INTO `zp_jobhunter` VALUES ('1181', '憨憨', null, '憨八龟', null, null, '15707031913', '博士', null, null, null);
 INSERT INTO `zp_jobhunter` VALUES ('1182', '方法', '', '皮卡丘', null, '2000', '157070', '本科', null, null, '');
@@ -623,12 +624,14 @@ INSERT INTO `zp_jobhunter` VALUES ('1375', '123456', null, '李四', '男', '198
 INSERT INTO `zp_jobhunter` VALUES ('1397', '尽快解决', null, '', null, null, '', '本科', null, null, null);
 INSERT INTO `zp_jobhunter` VALUES ('1426', 'yanz', null, 'zht Yan', '男', '12', '13672223717', '本科', '3', null, null);
 INSERT INTO `zp_jobhunter` VALUES ('1469', null, 'wqer', '112121221', 'male', null, '18821415140', '4', '34', '求职者', null);
-INSERT INTO `zp_jobhunter` VALUES ('1476', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO `zp_jobhunter` VALUES ('1477', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO `zp_jobhunter` VALUES ('1478', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO `zp_jobhunter` VALUES ('1479', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO `zp_jobhunter` VALUES ('1480', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO `zp_jobhunter` VALUES ('1481', '', '', '', '', '', '', '', '', '', '');
+INSERT INTO `zp_jobhunter` VALUES ('1483', '11', '111', '111', '111', '111', '111', '111', '111', '111', '111');
+INSERT INTO `zp_jobhunter` VALUES ('1491', '888', '', '润肤乳', '女', '', '999', '', '', '', '');
+INSERT INTO `zp_jobhunter` VALUES ('1492', 'fanfan', '', 'nn', 'nv', '', '123456', '', '', '', '');
+INSERT INTO `zp_jobhunter` VALUES ('1494', '2 薄外套', '', '二分法', '女', '', '2e232', '', '', '', '');
+INSERT INTO `zp_jobhunter` VALUES ('1495', '2', '', '担保人', '男', '', '2232', '', '', '', '');
+INSERT INTO `zp_jobhunter` VALUES ('1499', 'y55uj', '', '人格', '男', '2001', '123456', '高中', '', '', '');
+INSERT INTO `zp_jobhunter` VALUES ('1500', '恢复胡', null, null, null, null, '48189255895', null, null, null, null);
+INSERT INTO `zp_jobhunter` VALUES ('1503', '不知道', null, null, null, null, '12456', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for zp_jobhunter_service
@@ -671,7 +674,7 @@ CREATE TABLE `zp_jobs` (
   PRIMARY KEY (`id`),
   KEY `job_type_id` (`job_type_id`),
   CONSTRAINT `zp_jobs_ibfk_1` FOREIGN KEY (`job_type_id`) REFERENCES `zp_job_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=209 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of zp_jobs
@@ -694,6 +697,8 @@ INSERT INTO `zp_jobs` VALUES ('170', null, '老师', null);
 INSERT INTO `zp_jobs` VALUES ('194', null, '搬砖', null);
 INSERT INTO `zp_jobs` VALUES ('204', null, 'java', null);
 INSERT INTO `zp_jobs` VALUES ('206', null, 'javaee', null);
+INSERT INTO `zp_jobs` VALUES ('207', '4', '拆迁公司', null);
+INSERT INTO `zp_jobs` VALUES ('208', '23', '装逼大佬', null);
 
 -- ----------------------------
 -- Table structure for zp_job_type
@@ -703,7 +708,7 @@ CREATE TABLE `zp_job_type` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of zp_job_type
@@ -726,6 +731,7 @@ INSERT INTO `zp_job_type` VALUES ('19', '222');
 INSERT INTO `zp_job_type` VALUES ('20', '555');
 INSERT INTO `zp_job_type` VALUES ('21', '444');
 INSERT INTO `zp_job_type` VALUES ('22', '哈哈');
+INSERT INTO `zp_job_type` VALUES ('23', '装逼行业');
 
 -- ----------------------------
 -- Table structure for zp_message
@@ -764,7 +770,7 @@ CREATE TABLE `zp_province` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of zp_province
@@ -781,6 +787,7 @@ INSERT INTO `zp_province` VALUES ('21', '中国');
 INSERT INTO `zp_province` VALUES ('22', '鲲山');
 INSERT INTO `zp_province` VALUES ('23', '鲲山2');
 INSERT INTO `zp_province` VALUES ('24', '鲲山2');
+INSERT INTO `zp_province` VALUES ('25', '新疆');
 
 -- ----------------------------
 -- Table structure for zp_welfare
@@ -804,8 +811,6 @@ INSERT INTO `zp_welfare` VALUES ('203', '五险一金', '使用中');
 INSERT INTO `zp_welfare` VALUES ('204', '五险一金', '冻结中');
 INSERT INTO `zp_welfare` VALUES ('207', '下午茶', '冻结中');
 INSERT INTO `zp_welfare` VALUES ('208', '下午茶', '使用中');
-INSERT INTO `zp_welfare` VALUES ('209', '下午茶', '冻结中');
-INSERT INTO `zp_welfare` VALUES ('211', '下午茶', '使用中');
 INSERT INTO `zp_welfare` VALUES ('212', '下午茶', '冻结中');
 INSERT INTO `zp_welfare` VALUES ('214', '五险一金', '使用中');
 INSERT INTO `zp_welfare` VALUES ('215', '双休', '使用中');
